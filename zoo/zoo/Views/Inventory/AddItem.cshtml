@@ -1,0 +1,106 @@
+﻿@using zoo.Models
+@model Inventory
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+    <style>
+        #login-div {
+            position: absolute;
+            left: 37%;
+            top: 40%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+            background-color: white;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+</head>
+<body style="background-color:khaki">
+    <header style="font-size:3vw; margin-top:50px">
+        <text style="align-content:center"> Add Inventory</text>
+    </header>
+    <div id="login-div">
+        @using (Html.BeginForm("AddItem", "Inventory", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-align:center">Add Item</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.item_name)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.item_name)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Order Date</b>
+                    </td>
+                    <td>
+                        <input type="date" name="last" id="last">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Resupply Date</b>
+                    </td>
+                    <td>
+                        <input type="date" name="re" id="re">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.price)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.price)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.ordered_quantity)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.ordered_quantity)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.wholesaleprice)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.wholesaleprice)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="Submit" name="name" value="Submit" />
+                        <input type="reset" name="name" value="Clear" />
+                    </td>
+                </tr>
+            </table>
+        }
+        @if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+
+            </script>
+        }
+    </div>
+</body>
+</html>

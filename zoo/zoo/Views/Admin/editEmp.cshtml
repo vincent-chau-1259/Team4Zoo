@@ -1,0 +1,190 @@
+﻿@model zoo.Models.Employee
+
+@{
+    ViewBag.Title = "editEmp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<style>
+ p.pad {
+  border: 1px solid red; 
+  padding-top: 45px;
+}
+
+</style>
+<body>
+    <p class="pad"></p>
+<h2>Edit Employee</h2>
+
+@using (Html.BeginForm("editEmp", "Admin", FormMethod.Post, new {id = "popupform"})) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.f_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.f_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.f_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mid_init, "Middle Initial", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mid_init, new { htmlAttributes = new { @maxlength="1", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mid_init, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.l_name, "Last Name",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.l_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.l_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.email, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+                <div class="form-group">
+            @Html.LabelFor(model => model.sex, "Sex", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("sex", new List<SelectListItem> 
+                    {
+                    new SelectListItem{Text = "Male", Value="M"},
+                    new SelectListItem{Text = "Female", Value="F"}
+                    }, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.sex, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ssn,"SSN", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ssn, new { htmlAttributes = new { @maxlength="9", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ssn, "9 Digit", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.hourly_wage, "Hourly Wage", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.hourly_wage, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.hourly_wage, "Must be in decimal: XX.XX", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.phone_num, "Phone Number", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phone_num, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phone_num, "Format: XXX-XXX-XXXX", new { @class = "text-danger" })
+            </div>
+        </div>
+                <div class="form-group">
+            @Html.LabelFor(model => model.sick_days, "Sick Days", htmlAttributes: new {   @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sick_days, new { htmlAttributes = new {@class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sick_days, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+                <div class="form-group">
+            @Html.LabelFor(model => model.Department_ID, "Department", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+            <select class= "form-control" id="Department-Dropdown" name="Department_ID">
+             <option selected value ="base">Select Department</option>
+            </select>
+            </div>
+        </div>
+
+
+            <div class="form-group">
+            @Html.LabelFor(model => model.Role_ID, "Position", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+        <select class="form-control" id="Role-Dropdown" name="Role_ID">
+    <option selected value ="base">Select Position</option>
+        </select>
+            </div>
+        </div>
+
+                <div class="form-group">
+            @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.isActive)
+                    @Html.ValidationMessageFor(model => model.isActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+            @Html.HiddenFor(model => model.Employee_ID)
+            @Html.HiddenFor(model => model.Department_ID)
+            @Html.HiddenFor(model => model.Role_ID)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    
+}
+
+
+
+@if (ViewBag.Message != null)
+{
+        <script type="text/javascript">  
+            window.onload = function () {  
+                alert("@ViewBag.Message");  
+            };  
+        </script>  
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Staff")
+</div>
+
+@section Scripts{
+
+<script type ="text/javascript">
+        $.getJSON("/Admin/GetDepartmentList/", function (deptData) {
+
+            $('#Department-Dropdown').empty();
+            $('#Department-Dropdown').append($('<option>' + 'Unassigned' + '</option>'));
+            for (var i = 0; i <= deptData.length - 1; i++) {
+                $('#Department-Dropdown').append($('<option value="' + deptData[i].Department_ID + '">' + deptData[i].department_name + '</option>'));
+            }
+        });
+
+            $.getJSON("/Admin/GetRoleList/", function (RoleData) {
+
+            $('#Role-Dropdown').empty();
+                $('#Role-Dropdown').append($('<option>' + 'Unassigned' + '</option>'));
+            for (var i = 0; i <= RoleData.length - 1; i++) {
+                $('#Role-Dropdown').append($('<option value="' + RoleData[i].Role_ID + '">' + RoleData[i].Job_Title + '</option>'));
+            }
+        });
+</script>
+
+}
+    </body>

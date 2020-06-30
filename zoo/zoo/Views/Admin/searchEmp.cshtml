@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "searchEmp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <title>Search Employee</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+</head>
+<style>
+    p.pad {
+        border: 1px solid red;
+        padding-top: 45px;
+    }
+</style>
+<p class="pad"></p>
+
+<div style="width: 100%; margin: 0 auto;">
+    <a class="popup btn btn-primary" href="addEmp/" style="margin-bottom:20px; margin-top:20px;">Add New Employee</a>
+    <table id="EmpTable">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Middle Initial</th>
+                <th>Last Name</th>
+                <th>Sex</th>
+                <th>Date of Birth</th>
+                <th>Department Name</th>
+                <th>Job Title</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Hourly Wage</th>
+                <th>Hire Date</th>
+                <th>Sick Days</th>
+                <th>Active Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<style>
+    tr.even {
+        background-color: #F5F5F5 !important;
+    }
+</style>
+
+@* Load datatable css *@
+<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
+@* Load datatable js *@
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#EmpTable').DataTable({
+            "ajax": {
+                "url": "GetEmployeeList",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "f_name", "autoWidth": true },
+                { "data": "mid_init", "autoWidth": true },
+                { "data": "l_name", "autoWidth": true },
+                { "data": "sex", "autoWidth": true },
+                { "data": "dob", "autoWidth": true },
+                { "data": "department_name", "autoWidth": true },
+                { "data": "Job_Title", "autoWidth": true },
+                { "data": "phone_num", "autoWidth": true },
+                { "data": "email", "autoWidth": true },
+                { "data": "hourly_wage", "autoWidth": true },
+                { "data": "hire_date", "autoWidth": true},
+                { "data": "sick_days", "autoWidth": true },
+                { "data": "isActive", "autoWidth": true },
+                {
+                    "data": "Employee_ID", "width": "50px", "render": function (data) {
+                        return '<a class="btn btn-primary" href="editEmp/' + data + '">Edit</a>';
+                    }
+                },
+                {
+                    "data": "Employee_ID", "width": "50px", "render": function (data) {
+                        //return '<a id="' + data + '" class="btn btn-primary" class="popup" href="deleteEmp/' + data + '">Delete</a>';
+                        return '<form action="deleteEmp/'+data+'" method="post"><button type="submit" onclick="return confirm();"name="deleteEmp" value="Delete" class ="btn btn-primary" )>Delete</Button></form>';
+                    }
+                }
+            ]
+        })
+
+      
+    });
+</script>
+}

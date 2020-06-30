@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Finance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<head>
+    <title>Finance</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="../../Scripts/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <style>
+        #chart_container{
+            width: 400px;
+            height: 400px;
+            border: 1px solid #ddd;
+            padding:1px;
+            border-radius: 4px;
+
+        }
+         p.pad {
+  border: 1px solid red; 
+  padding-top: 45px;
+}
+    </style>
+
+</head>
+
+
+<p class="pad"></p>
+
+<div class="row">
+    <div class="col-md-12">
+        <canvas id="myChart" width="800" height="400"></canvas>
+        <div id="legendChart" class="chart-legend"></div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script type ="text/javascript">
+    var dataChart = {
+    labels: [],
+    datasets:
+    [
+        {
+            label: "Revenue",
+            backgroundColor: "rgba(132,186,91,0.8)",
+            borderColor: "rgba(220,220,220,0.9)",
+            borderWidth: 1,
+            hoverBackgroundColor: "rgba(220,220,220,1)",
+            hoverBorderColor: "rgba(220,220,220,0.5)",
+            data: []
+         },
+         {
+            label: "Expenditure",
+            backgroundColor: "rgba(211,94,96,0.8)",
+            borderColor: "rgba(151, 187, 205, 0.9)",
+            borderWidth: 1,
+            hoverBackgroundColor: "rgba(151,187,205,1)",
+            hoverBorderColor: "rgba(151,187,205,0.5)",
+            data: []
+         }   
+     ]
+};
+ 
+$.getJSON("/Admin/RevExpChart/", function(data){
+    for(var i =0; i <= data.length - 1; i++)
+    {
+        dataChart.labels.push(data[i].name);
+        dataChart.datasets[0].data.push(data[i].revenue)
+        dataChart.datasets[1].data.push(data[i].expenditure)
+
+    }
+    var ctx = document.getElementById("myChart").getContext("2d");
+
+    var myBarChart = new Chart(ctx,
+        {
+            type: 'bar',
+            data: dataChart,
+            options: {}
+        });
+});
+
+    </script>
+}

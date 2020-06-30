@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+}
+
+@using zoo.Models
+@model Tuple<IEnumerable<Attraction>>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>>
+</head>
+<body>
+    <div>
+        <table>
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td><h3>My Animal's Current Attractions</h3></td><td></td><td></td><td></tr>
+
+            <tr>
+                <th>Attraction Name</th>
+                <th>Manager</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.Item1)
+            {
+            <tr>
+                <td>@item.attraction_name</td>
+                <td>@item.manager_name</td>
+                <td>@item.start_date</td>
+                <td>@item.end_date</td>
+                <td>@item.start_time</td>
+                <td>@item.end_time</td>
+            </tr>
+            }
+
+
+        </table>
+
+    </div>
+</body>
+</html>
+

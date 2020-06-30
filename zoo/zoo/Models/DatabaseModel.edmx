@@ -1,0 +1,1893 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="team4zooModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="Animal_ID" />
+          </Key>
+          <Property Name="Animal_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="animal_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="family" Type="int" />
+          <Property Name="dob" Type="date" Nullable="false" />
+          <Property Name="sex" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="weight" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="owner" Type="varchar" MaxLength="25" />
+          <Property Name="Exhibit_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Attraction_ID" Type="uniqueidentifier" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="Assignee1_ID" Type="uniqueidentifier" />
+          <Property Name="Assignee2_ID" Type="uniqueidentifier" />
+          <Property Name="Assignee3_ID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Animal_Feed_Care">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Animal_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="quantity_fed" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="Employee_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="food_type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="time" Type="time" Precision="0" />
+          <Property Name="Record_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Animal_Medication_Care">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Animal_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="medication" Type="varchar" MaxLength="30" />
+          <Property Name="Vaccine" Type="varchar" MaxLength="30" />
+          <Property Name="dose" Type="varchar" MaxLength="20" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="time" Type="time" Precision="0" Nullable="false" />
+          <Property Name="vet" Type="varchar" MaxLength="30" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
+          <Property Name="Record_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employee_ID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Attraction">
+          <Key>
+            <PropertyRef Name="Attraction_ID" />
+          </Key>
+          <Property Name="attraction_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="manager_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" Nullable="false" />
+          <Property Name="start_time" Type="time" Precision="1" />
+          <Property Name="end_time" Type="time" Precision="1" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="Exhibit_ID" Type="uniqueidentifier" />
+          <Property Name="Attraction_ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BoxOffice_Records">
+          <Key>
+            <PropertyRef Name="Sale_ID" />
+          </Key>
+          <Property Name="membership_discount" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="Customer_ID" Type="uniqueidentifier" />
+          <Property Name="Attraction_ID" Type="uniqueidentifier" />
+          <Property Name="Department_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="tot_amt_paid_after_discounts" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="Sale_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Ticket_type_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Credentials">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Employee_ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Customer_ID" />
+          </Key>
+          <Property Name="f_name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="mid_init" Type="char" MaxLength="1" />
+          <Property Name="l_name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="12" />
+          <Property Name="membership" Type="bit" Nullable="false" />
+          <Property Name="Customer_ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Department_ID" />
+          </Key>
+          <Property Name="department_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="zoo_name" Type="varchar" MaxLength="50" />
+          <Property Name="Department_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="dep_revenue" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="Supervisor_ID" Type="uniqueidentifier" />
+          <Property Name="dep_expenditure" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="f_name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="mid_init" Type="char" MaxLength="1" />
+          <Property Name="l_name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="sex" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="dob" Type="date" Nullable="false" />
+          <Property Name="ssn" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="hourly_wage" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="hire_date" Type="date" Nullable="false" />
+          <Property Name="sick_days" Type="int" />
+          <Property Name="phone_num" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="Employee_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Attraction_ID" Type="uniqueidentifier" />
+          <Property Name="Department_ID" Type="uniqueidentifier" />
+          <Property Name="username" Type="varchar" MaxLength="15" />
+          <Property Name="Role_ID" Type="uniqueidentifier" />
+          <Property Name="display_name" Type="varchar" MaxLength="15" />
+          <Property Name="Supervisor_ID" Type="uniqueidentifier" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'team4zoo.zoo.Employee_Animal_Junction_Table' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Employee_Animal_Junction_Table">
+          <Key>
+            <PropertyRef Name="Employee_ID" />
+            <PropertyRef Name="Animal_ID" />
+          </Key>
+          <Property Name="Employee_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Animal_ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Exhibit">
+          <Key>
+            <PropertyRef Name="Exhibit_ID" />
+          </Key>
+          <Property Name="Exhibit_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="exhibit_loc" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="exhibit_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="zoo_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isOpen" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Family_Name">
+          <Key>
+            <PropertyRef Name="Family_ID" />
+          </Key>
+          <Property Name="Family_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="family_title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'team4zoo.zoo.Food_Animal_Junction_table' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Food_Animal_Junction_table">
+          <Key>
+            <PropertyRef Name="Food_type" />
+            <PropertyRef Name="Animal_ID" />
+          </Key>
+          <Property Name="Food_type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Animal_ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Food_Purchases">
+          <Key>
+            <PropertyRef Name="order_ID" />
+          </Key>
+          <Property Name="order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Food_type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="amount_purchased" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="tot_cost" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Department_ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Food_Supply">
+          <Key>
+            <PropertyRef Name="Food_type" />
+          </Key>
+          <Property Name="Food_type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="last_ordered" Type="date" Nullable="false" />
+          <Property Name="resupply_date" Type="date" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="Item_ID" />
+          </Key>
+          <Property Name="Item_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="item_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="last_ordered" Type="date" Nullable="false" />
+          <Property Name="resupply_date" Type="date" />
+          <Property Name="price" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="ordered_quantity" Type="int" Nullable="false" />
+          <Property Name="Department_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="wholesaleprice" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jobs">
+          <Key>
+            <PropertyRef Name="Job_ID" />
+          </Key>
+          <Property Name="job_title" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Job_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Maintenance">
+          <Key>
+            <PropertyRef Name="Ticket_ID" />
+          </Key>
+          <Property Name="Ticket_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="job_type" Type="int" Nullable="false" />
+          <Property Name="Employee_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="due_date" Type="date" Nullable="false" />
+          <Property Name="Exhibit_ID" Type="uniqueidentifier" />
+          <Property Name="status" Type="bit" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Role_ID" />
+          </Key>
+          <Property Name="Role_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Job_Title" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shop_Sale_Record">
+          <Key>
+            <PropertyRef Name="Sale_ID" />
+          </Key>
+          <Property Name="Sale_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Shop_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Item_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="Customer_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="refund_flag" Type="bit" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shops">
+          <Key>
+            <PropertyRef Name="Shop_ID" />
+          </Key>
+          <Property Name="Shop_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="shop_loc" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="shop_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Manager_Employee_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Department_ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams1">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tickets">
+          <Key>
+            <PropertyRef Name="Ticket_type_ID" />
+          </Key>
+          <Property Name="Ticket_type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ticket_type" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zoo">
+          <Key>
+            <PropertyRef Name="zoo_name" />
+          </Key>
+          <Property Name="zoo_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="zoo_acres" Type="int" Nullable="false" />
+          <Property Name="zoo_est_date" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Animal_Exhibit_ID">
+          <End Role="Exhibit" Type="Self.Exhibit" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exhibit">
+              <PropertyRef Name="Exhibit_ID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="Exhibit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Family">
+          <End Role="Family_Name" Type="Self.Family_Name" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family_Name">
+              <PropertyRef Name="Family_ID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="family" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Medication_Care_Animal">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+          <End Role="Animal_Medication_Care" Type="Self.Animal_Medication_Care" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="Animal_ID" />
+            </Principal>
+            <Dependent Role="Animal_Medication_Care">
+              <PropertyRef Name="Animal_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Medication_Care_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Animal_Medication_Care" Type="Self.Animal_Medication_Care" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Animal_Medication_Care">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attraction_Exhibit">
+          <End Role="Exhibit" Type="Self.Exhibit" Multiplicity="0..1" />
+          <End Role="Attraction" Type="Self.Attraction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exhibit">
+              <PropertyRef Name="Exhibit_ID" />
+            </Principal>
+            <Dependent Role="Attraction">
+              <PropertyRef Name="Exhibit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoxOffice_Records_Attraction">
+          <End Role="Attraction" Type="Self.Attraction" Multiplicity="0..1" />
+          <End Role="BoxOffice_Records" Type="Self.BoxOffice_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attraction">
+              <PropertyRef Name="Attraction_ID" />
+            </Principal>
+            <Dependent Role="BoxOffice_Records">
+              <PropertyRef Name="Attraction_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoxOffice_Records_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="BoxOffice_Records" Type="Self.BoxOffice_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="BoxOffice_Records">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoxOffice_Records_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="BoxOffice_Records" Type="Self.BoxOffice_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Department_ID" />
+            </Principal>
+            <Dependent Role="BoxOffice_Records">
+              <PropertyRef Name="Department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Department_Supervisor_ID">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee1" Type="Self.Employee" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Employee1">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Department_Zoo">
+          <End Role="Zoo" Type="Self.Zoo" Multiplicity="0..1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zoo">
+              <PropertyRef Name="zoo_name" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="zoo_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Animal_Junction_Table_Animal">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employee_Animal_Junction_Table" Type="Self.Employee_Animal_Junction_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="Animal_ID" />
+            </Principal>
+            <Dependent Role="Employee_Animal_Junction_Table">
+              <PropertyRef Name="Animal_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Animal_Junction_Table_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employee_Animal_Junction_Table" Type="Self.Employee_Animal_Junction_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Employee_Animal_Junction_Table">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Attraction">
+          <End Role="Attraction" Type="Self.Attraction" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attraction">
+              <PropertyRef Name="Attraction_ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Attraction_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Department">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee1" Type="Self.Employee" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Employee1">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee1" Type="Self.Employee" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Employee1">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exhibit_Zoo">
+          <End Role="Zoo" Type="Self.Zoo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Exhibit" Type="Self.Exhibit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zoo">
+              <PropertyRef Name="zoo_name" />
+            </Principal>
+            <Dependent Role="Exhibit">
+              <PropertyRef Name="zoo_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Animal_Junction_table_Animal">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Food_Animal_Junction_table" Type="Self.Food_Animal_Junction_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="Animal_ID" />
+            </Principal>
+            <Dependent Role="Food_Animal_Junction_table">
+              <PropertyRef Name="Animal_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Animal_Junction_table_Food_Supply">
+          <End Role="Food_Supply" Type="Self.Food_Supply" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Food_Animal_Junction_table" Type="Self.Food_Animal_Junction_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Supply">
+              <PropertyRef Name="Food_type" />
+            </Principal>
+            <Dependent Role="Food_Animal_Junction_table">
+              <PropertyRef Name="Food_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Purchases_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Food_Purchases" Type="Self.Food_Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Department_ID" />
+            </Principal>
+            <Dependent Role="Food_Purchases">
+              <PropertyRef Name="Department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Purchases_Food_Supply">
+          <End Role="Food_Supply" Type="Self.Food_Supply" Multiplicity="1" />
+          <End Role="Food_Purchases" Type="Self.Food_Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Supply">
+              <PropertyRef Name="Food_type" />
+            </Principal>
+            <Dependent Role="Food_Purchases">
+              <PropertyRef Name="Food_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maintenance_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Maintenance">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maintenance_Exhibit">
+          <End Role="Exhibit" Type="Self.Exhibit" Multiplicity="0..1" />
+          <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exhibit">
+              <PropertyRef Name="Exhibit_ID" />
+            </Principal>
+            <Dependent Role="Maintenance">
+              <PropertyRef Name="Exhibit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_Employee">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shop_Sale_Record_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Shop_Sale_Record" Type="Self.Shop_Sale_Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Shop_Sale_Record">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shop_Sale_Record_Inventory">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Shop_Sale_Record" Type="Self.Shop_Sale_Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="Item_ID" />
+            </Principal>
+            <Dependent Role="Shop_Sale_Record">
+              <PropertyRef Name="Item_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shop_Sale_Record_Shops">
+          <End Role="Shops" Type="Self.Shops" Multiplicity="1" />
+          <End Role="Shop_Sale_Record" Type="Self.Shop_Sale_Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="Shop_ID" />
+            </Principal>
+            <Dependent Role="Shop_Sale_Record">
+              <PropertyRef Name="Shop_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shops_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Shops" Type="Self.Shops" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Department_ID" />
+            </Principal>
+            <Dependent Role="Shops">
+              <PropertyRef Name="Department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="team4zooModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Animal" EntityType="Self.Animal" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Animal_Feed_Care" EntityType="Self.Animal_Feed_Care" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Animal_Medication_Care" EntityType="Self.Animal_Medication_Care" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Attraction" EntityType="Self.Attraction" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="BoxOffice_Records" EntityType="Self.BoxOffice_Records" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Credentials" EntityType="Self.Credentials" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Exhibit" EntityType="Self.Exhibit" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Family_Name" EntityType="Self.Family_Name" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Food_Purchases" EntityType="Self.Food_Purchases" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Food_Supply" EntityType="Self.Food_Supply" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Maintenance" EntityType="Self.Maintenance" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Shop_Sale_Record" EntityType="Self.Shop_Sale_Record" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Shops" EntityType="Self.Shops" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams1" EntityType="Self.sysdiagrams1" Schema="zoo" Table="sysdiagrams" store:Type="Tables" />
+          <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Zoo" EntityType="Self.Zoo" Schema="zoo" store:Type="Tables" />
+          <EntitySet Name="Employee_Animal_Junction_Table" EntityType="Self.Employee_Animal_Junction_Table" store:Type="Tables" store:Schema="zoo">
+            <DefiningQuery>SELECT 
+[Employee_Animal_Junction_Table].[Employee_ID] AS [Employee_ID], 
+[Employee_Animal_Junction_Table].[Animal_ID] AS [Animal_ID]
+FROM [zoo].[Employee_Animal_Junction_Table] AS [Employee_Animal_Junction_Table]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Food_Animal_Junction_table" EntityType="Self.Food_Animal_Junction_table" store:Type="Tables" store:Schema="zoo">
+            <DefiningQuery>SELECT 
+[Food_Animal_Junction_table].[Food_type] AS [Food_type], 
+[Food_Animal_Junction_table].[Animal_ID] AS [Animal_ID]
+FROM [zoo].[Food_Animal_Junction_table] AS [Food_Animal_Junction_table]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Animal_Exhibit_ID" Association="Self.FK_Animal_Exhibit_ID">
+            <End Role="Exhibit" EntitySet="Exhibit" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Family" Association="Self.FK_Animal_Family">
+            <End Role="Family_Name" EntitySet="Family_Name" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Medication_Care_Animal" Association="Self.FK_Animal_Medication_Care_Animal">
+            <End Role="Animal" EntitySet="Animal" />
+            <End Role="Animal_Medication_Care" EntitySet="Animal_Medication_Care" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Medication_Care_Employee" Association="Self.FK_Animal_Medication_Care_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Animal_Medication_Care" EntitySet="Animal_Medication_Care" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attraction_Exhibit" Association="Self.FK_Attraction_Exhibit">
+            <End Role="Exhibit" EntitySet="Exhibit" />
+            <End Role="Attraction" EntitySet="Attraction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoxOffice_Records_Attraction" Association="Self.FK_BoxOffice_Records_Attraction">
+            <End Role="Attraction" EntitySet="Attraction" />
+            <End Role="BoxOffice_Records" EntitySet="BoxOffice_Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoxOffice_Records_Customer" Association="Self.FK_BoxOffice_Records_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="BoxOffice_Records" EntitySet="BoxOffice_Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoxOffice_Records_Department" Association="Self.FK_BoxOffice_Records_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="BoxOffice_Records" EntitySet="BoxOffice_Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Department_Supervisor_ID" Association="Self.FK_Department_Supervisor_ID">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Employee1" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Department_Zoo" Association="Self.FK_Department_Zoo">
+            <End Role="Zoo" EntitySet="Zoo" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Animal_Junction_Table_Animal" Association="Self.FK_Employee_Animal_Junction_Table_Animal">
+            <End Role="Animal" EntitySet="Animal" />
+            <End Role="Employee_Animal_Junction_Table" EntitySet="Employee_Animal_Junction_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Animal_Junction_Table_Employee" Association="Self.FK_Employee_Animal_Junction_Table_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Employee_Animal_Junction_Table" EntitySet="Employee_Animal_Junction_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Attraction" Association="Self.FK_Employee_Attraction">
+            <End Role="Attraction" EntitySet="Attraction" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Employee1" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Employee" Association="Self.FK_Employee_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Employee1" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exhibit_Zoo" Association="Self.FK_Exhibit_Zoo">
+            <End Role="Zoo" EntitySet="Zoo" />
+            <End Role="Exhibit" EntitySet="Exhibit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Animal_Junction_table_Animal" Association="Self.FK_Food_Animal_Junction_table_Animal">
+            <End Role="Animal" EntitySet="Animal" />
+            <End Role="Food_Animal_Junction_table" EntitySet="Food_Animal_Junction_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Animal_Junction_table_Food_Supply" Association="Self.FK_Food_Animal_Junction_table_Food_Supply">
+            <End Role="Food_Supply" EntitySet="Food_Supply" />
+            <End Role="Food_Animal_Junction_table" EntitySet="Food_Animal_Junction_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Purchases_Department" Association="Self.FK_Food_Purchases_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Food_Purchases" EntitySet="Food_Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Purchases_Food_Supply" Association="Self.FK_Food_Purchases_Food_Supply">
+            <End Role="Food_Supply" EntitySet="Food_Supply" />
+            <End Role="Food_Purchases" EntitySet="Food_Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maintenance_Employee" Association="Self.FK_Maintenance_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Maintenance" EntitySet="Maintenance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maintenance_Exhibit" Association="Self.FK_Maintenance_Exhibit">
+            <End Role="Exhibit" EntitySet="Exhibit" />
+            <End Role="Maintenance" EntitySet="Maintenance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_Employee" Association="Self.FK_Role_Employee">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shop_Sale_Record_Customer" Association="Self.FK_Shop_Sale_Record_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Shop_Sale_Record" EntitySet="Shop_Sale_Record" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shop_Sale_Record_Inventory" Association="Self.FK_Shop_Sale_Record_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="Shop_Sale_Record" EntitySet="Shop_Sale_Record" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shop_Sale_Record_Shops" Association="Self.FK_Shop_Sale_Record_Shops">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Shop_Sale_Record" EntitySet="Shop_Sale_Record" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shops_Department" Association="Self.FK_Shops_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Shops" EntitySet="Shops" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="team4zooModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="Animal_ID" />
+          </Key>
+          <Property Name="Animal_ID" Type="Guid" Nullable="false" />
+          <Property Name="animal_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="family" Type="Int32" />
+          <Property Name="dob" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="weight" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="owner" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Exhibit_ID" Type="Guid" Nullable="false" />
+          <Property Name="Attraction_ID" Type="Guid" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Animal_Feed_Care" Relationship="Self.FK_Animal_Care_Animal" FromRole="Animal" ToRole="Animal_Feed_Care" />
+          <NavigationProperty Name="Exhibit" Relationship="Self.FK_Animal_Exhibit_ID" FromRole="Animal" ToRole="Exhibit" />
+          <NavigationProperty Name="Family_Name" Relationship="Self.FK_Animal_Family_Name" FromRole="Animal" ToRole="Family_Name" />
+          <NavigationProperty Name="Animal_Medication_Care" Relationship="Self.FK_Animal_Medication_Care_Animal" FromRole="Animal" ToRole="Animal_Medication_Care" />
+          <NavigationProperty Name="Employees" Relationship="Self.Employee_Animal_Junction_Table" FromRole="Animal" ToRole="Employee" />
+          <NavigationProperty Name="Food_Supply" Relationship="Self.Food_Animal_Junction_table" FromRole="Animal" ToRole="Food_Supply" />
+          <Property Name="Assignee1_ID" Type="Guid" />
+          <Property Name="Assignee2_ID" Type="Guid" />
+          <Property Name="Assignee3_ID" Type="Guid" />
+        </EntityType>
+        <EntityType Name="Animal_Feed_Care">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Animal_ID" Type="Guid" Nullable="false" />
+          <Property Name="quantity_fed" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Employee_ID" Type="Guid" Nullable="false" />
+          <Property Name="food_type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="time" Type="Time" Precision="0" />
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK_Animal_Care_Animal" FromRole="Animal_Feed_Care" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="Animal_Medication_Care">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Animal_ID" Type="Guid" Nullable="false" />
+          <Property Name="medication" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Vaccine" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dose" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="time" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="vet" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee_ID" Type="Guid" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK_Animal_Medication_Care_Animal" FromRole="Animal_Medication_Care" ToRole="Animal" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Animal_Medication_Care_Employee" FromRole="Animal_Medication_Care" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Attraction">
+          <Key>
+            <PropertyRef Name="Attraction_ID" />
+          </Key>
+          <Property Name="attraction_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="manager_ID" Type="Guid" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="start_time" Type="Time" Precision="1" />
+          <Property Name="end_time" Type="Time" Precision="1" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="Exhibit_ID" Type="Guid" />
+          <Property Name="Attraction_ID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Exhibit" Relationship="Self.FK_Attraction_Exhibit" FromRole="Attraction" ToRole="Exhibit" />
+          <NavigationProperty Name="BoxOffice_Records" Relationship="Self.FK_BoxOffice_Records_Attraction" FromRole="Attraction" ToRole="BoxOffice_Records" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Attraction" FromRole="Attraction" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="BoxOffice_Records">
+          <Key>
+            <PropertyRef Name="Sale_ID" />
+          </Key>
+          <Property Name="membership_discount" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="Customer_ID" Type="Guid" />
+          <Property Name="Attraction_ID" Type="Guid" />
+          <Property Name="Department_ID" Type="Guid" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="tot_amt_paid_after_discounts" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Sale_ID" Type="Guid" Nullable="false" />
+          <Property Name="Ticket_type_ID" Type="Int32" />
+          <NavigationProperty Name="Attraction" Relationship="Self.FK_BoxOffice_Records_Attraction" FromRole="BoxOffice_Records" ToRole="Attraction" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_BoxOffice_Records_Customer" FromRole="BoxOffice_Records" ToRole="Customer" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_BoxOffice_Records_Department" FromRole="BoxOffice_Records" ToRole="Department" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK_BoxOffice_Records_Tickets" FromRole="BoxOffice_Records" ToRole="Tickets" />
+        </EntityType>
+        <EntityType Name="Credential">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Employee_ID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Credentials_Employee" FromRole="Credentials" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Customer_ID" />
+          </Key>
+          <Property Name="f_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mid_init" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="l_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="membership" Type="Boolean" Nullable="false" />
+          <Property Name="Customer_ID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="BoxOffice_Records" Relationship="Self.FK_BoxOffice_Records_Customer" FromRole="Customer" ToRole="BoxOffice_Records" />
+          <NavigationProperty Name="Shop_Sale_Record" Relationship="Self.FK_Shop_Sale_Record_Customer" FromRole="Customer" ToRole="Shop_Sale_Record" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Department_ID" />
+          </Key>
+          <Property Name="department_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zoo_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Department_ID" Type="Guid" Nullable="false" />
+          <Property Name="dep_revenue" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="Supervisor_ID" Type="Guid" />
+          <Property Name="dep_expenditure" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <NavigationProperty Name="BoxOffice_Records" Relationship="Self.FK_BoxOffice_Records_Department" FromRole="Department" ToRole="BoxOffice_Records" />
+          <NavigationProperty Name="Zoo" Relationship="Self.FK_Department_Zoo" FromRole="Department" ToRole="Zoo" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
+          <NavigationProperty Name="Food_Purchases" Relationship="Self.FK_Food_Purchases_Department" FromRole="Department" ToRole="Food_Purchases" />
+          <NavigationProperty Name="Shops" Relationship="Self.FK_Shops_Department" FromRole="Department" ToRole="Shops" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="f_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mid_init" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="l_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sex" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dob" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ssn" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hourly_wage" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="hire_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="sick_days" Type="Int32" />
+          <Property Name="phone_num" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="Employee_ID" Type="Guid" Nullable="false" />
+          <Property Name="Attraction_ID" Type="Guid" />
+          <Property Name="Department_ID" Type="Guid" />
+          <Property Name="username" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Role_ID" Type="Guid" />
+          <Property Name="display_name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Animal_Medication_Care" Relationship="Self.FK_Animal_Medication_Care_Employee" FromRole="Employee" ToRole="Animal_Medication_Care" />
+          <NavigationProperty Name="Attraction" Relationship="Self.FK_Employee_Attraction" FromRole="Employee" ToRole="Attraction" />
+          <NavigationProperty Name="Credential" Relationship="Self.FK_Credentials_Employee" FromRole="Employee" ToRole="Credentials" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
+          <NavigationProperty Name="Maintenances" Relationship="Self.FK_Maintenance_Employee" FromRole="Employee" ToRole="Maintenance" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Role_Employee" FromRole="Employee" ToRole="Role" />
+          <NavigationProperty Name="Animals" Relationship="Self.Employee_Animal_Junction_Table" FromRole="Employee" ToRole="Animal" />
+          <Property Name="Supervisor_ID" Type="Guid" />
+          <NavigationProperty Name="Employee1" Relationship="team4zooModel.FK_Department_Supervisor_ID" FromRole="Employee" ToRole="Employee1" />
+          <NavigationProperty Name="Employee2" Relationship="team4zooModel.FK_Department_Supervisor_ID" FromRole="Employee1" ToRole="Employee" />
+          <NavigationProperty Name="Employee11" Relationship="team4zooModel.FK_Employee_Department1" FromRole="Employee" ToRole="Employee1" />
+          <NavigationProperty Name="Employee3" Relationship="team4zooModel.FK_Employee_Department1" FromRole="Employee1" ToRole="Employee" />
+          <NavigationProperty Name="Employee12" Relationship="team4zooModel.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
+          <NavigationProperty Name="Employee4" Relationship="team4zooModel.FK_Employee_Employee" FromRole="Employee1" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Exhibit">
+          <Key>
+            <PropertyRef Name="Exhibit_ID" />
+          </Key>
+          <Property Name="Exhibit_ID" Type="Guid" Nullable="false" />
+          <Property Name="exhibit_loc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="exhibit_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zoo_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isOpen" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Animals" Relationship="Self.FK_Animal_Exhibit_ID" FromRole="Exhibit" ToRole="Animal" />
+          <NavigationProperty Name="Attractions" Relationship="Self.FK_Attraction_Exhibit" FromRole="Exhibit" ToRole="Attraction" />
+          <NavigationProperty Name="Zoo" Relationship="Self.FK_Exhibit_Zoo" FromRole="Exhibit" ToRole="Zoo" />
+          <NavigationProperty Name="Maintenances" Relationship="Self.FK_Maintenance_Exhibit" FromRole="Exhibit" ToRole="Maintenance" />
+        </EntityType>
+        <EntityType Name="Family_Name">
+          <Key>
+            <PropertyRef Name="Family_ID" />
+          </Key>
+          <Property Name="family_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Family_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Animals" Relationship="Self.FK_Animal_Family_Name" FromRole="Family_Name" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="Food_Purchases">
+          <Key>
+            <PropertyRef Name="order_ID" />
+          </Key>
+          <Property Name="order_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Food_type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="amount_purchased" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="tot_cost" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Department_ID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Food_Purchases_Department" FromRole="Food_Purchases" ToRole="Department" />
+          <NavigationProperty Name="Food_Supply" Relationship="Self.FK_Food_Purchases_Food_Supply" FromRole="Food_Purchases" ToRole="Food_Supply" />
+        </EntityType>
+        <EntityType Name="Food_Supply">
+          <Key>
+            <PropertyRef Name="Food_type" />
+          </Key>
+          <Property Name="Food_type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_ordered" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="resupply_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Food_Purchases" Relationship="Self.FK_Food_Purchases_Food_Supply" FromRole="Food_Supply" ToRole="Food_Purchases" />
+          <NavigationProperty Name="Animals" Relationship="Self.Food_Animal_Junction_table" FromRole="Food_Supply" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="Item_ID" />
+          </Key>
+          <Property Name="Item_ID" Type="Guid" Nullable="false" />
+          <Property Name="item_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_ordered" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="resupply_date" Type="DateTime" Precision="0" />
+          <Property Name="price" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="ordered_quantity" Type="Int32" Nullable="false" />
+          <Property Name="Department_ID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Shop_Sale_Record" Relationship="Self.FK_Shop_Sale_Record_Inventory" FromRole="Inventory" ToRole="Shop_Sale_Record" />
+          <Property Name="wholesaleprice" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Job_ID" />
+          </Key>
+          <Property Name="job_title" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Job_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Maintenance">
+          <Key>
+            <PropertyRef Name="Ticket_ID" />
+          </Key>
+          <Property Name="Ticket_ID" Type="Guid" Nullable="false" />
+          <Property Name="job_type" Type="Int32" Nullable="false" />
+          <Property Name="Employee_ID" Type="Guid" Nullable="false" />
+          <Property Name="due_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Exhibit_ID" Type="Guid" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Maintenance_Employee" FromRole="Maintenance" ToRole="Employee" />
+          <NavigationProperty Name="Exhibit" Relationship="Self.FK_Maintenance_Exhibit" FromRole="Maintenance" ToRole="Exhibit" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Role_ID" />
+          </Key>
+          <Property Name="Role_ID" Type="Guid" Nullable="false" />
+          <Property Name="Job_Title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Role_Employee" FromRole="Role" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Shop_Sale_Record">
+          <Key>
+            <PropertyRef Name="Sale_ID" />
+          </Key>
+          <Property Name="Sale_ID" Type="Guid" Nullable="false" />
+          <Property Name="Shop_ID" Type="Guid" Nullable="false" />
+          <Property Name="Item_ID" Type="Guid" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="Customer_ID" Type="Guid" Nullable="false" />
+          <Property Name="refund_flag" Type="Boolean" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Shop_Sale_Record_Customer" FromRole="Shop_Sale_Record" ToRole="Customer" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Shop_Sale_Record_Inventory" FromRole="Shop_Sale_Record" ToRole="Inventory" />
+          <NavigationProperty Name="Shop" Relationship="Self.FK_Shop_Sale_Record_Shops" FromRole="Shop_Sale_Record" ToRole="Shops" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="Shop_ID" />
+          </Key>
+          <Property Name="Shop_ID" Type="Guid" Nullable="false" />
+          <Property Name="shop_loc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shop_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Manager_Employee_ID" Type="Guid" Nullable="false" />
+          <Property Name="Department_ID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Shops_Department" FromRole="Shops" ToRole="Department" />
+          <NavigationProperty Name="Shop_Sale_Record" Relationship="Self.FK_Shop_Sale_Record_Shops" FromRole="Shops" ToRole="Shop_Sale_Record" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="Ticket_type_ID" />
+          </Key>
+          <Property Name="Ticket_type_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ticket_type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BoxOffice_Records" Relationship="Self.FK_BoxOffice_Records_Tickets" FromRole="Tickets" ToRole="BoxOffice_Records" />
+        </EntityType>
+        <EntityType Name="Zoo">
+          <Key>
+            <PropertyRef Name="zoo_name" />
+          </Key>
+          <Property Name="zoo_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zoo_acres" Type="Int32" Nullable="false" />
+          <Property Name="zoo_est_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Department_Zoo" FromRole="Zoo" ToRole="Department" />
+          <NavigationProperty Name="Exhibits" Relationship="Self.FK_Exhibit_Zoo" FromRole="Zoo" ToRole="Exhibit" />
+        </EntityType>
+        <Association Name="FK_Animal_Care_Animal">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Animal_Feed_Care" Type="Self.Animal_Feed_Care" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="Animal_ID" />
+            </Principal>
+            <Dependent Role="Animal_Feed_Care">
+              <PropertyRef Name="Animal_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Exhibit_ID">
+          <End Role="Exhibit" Type="Self.Exhibit" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exhibit">
+              <PropertyRef Name="Exhibit_ID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="Exhibit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Family_Name">
+          <End Role="Family_Name" Type="Self.Family_Name" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family_Name">
+              <PropertyRef Name="Family_ID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="family" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Medication_Care_Animal">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Animal_Medication_Care" Type="Self.Animal_Medication_Care" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="Animal_ID" />
+            </Principal>
+            <Dependent Role="Animal_Medication_Care">
+              <PropertyRef Name="Animal_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Medication_Care_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Animal_Medication_Care" Type="Self.Animal_Medication_Care" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Animal_Medication_Care">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attraction_Exhibit">
+          <End Role="Exhibit" Type="Self.Exhibit" Multiplicity="0..1" />
+          <End Role="Attraction" Type="Self.Attraction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exhibit">
+              <PropertyRef Name="Exhibit_ID" />
+            </Principal>
+            <Dependent Role="Attraction">
+              <PropertyRef Name="Exhibit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoxOffice_Records_Attraction">
+          <End Role="Attraction" Type="Self.Attraction" Multiplicity="0..1" />
+          <End Role="BoxOffice_Records" Type="Self.BoxOffice_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attraction">
+              <PropertyRef Name="Attraction_ID" />
+            </Principal>
+            <Dependent Role="BoxOffice_Records">
+              <PropertyRef Name="Attraction_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Attraction">
+          <End Role="Attraction" Type="Self.Attraction" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attraction">
+              <PropertyRef Name="Attraction_ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Attraction_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoxOffice_Records_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="BoxOffice_Records" Type="Self.BoxOffice_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="BoxOffice_Records">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoxOffice_Records_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="BoxOffice_Records" Type="Self.BoxOffice_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Department_ID" />
+            </Principal>
+            <Dependent Role="BoxOffice_Records">
+              <PropertyRef Name="Department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoxOffice_Records_Tickets">
+          <End Role="Tickets" Type="Self.Ticket" Multiplicity="0..1" />
+          <End Role="BoxOffice_Records" Type="Self.BoxOffice_Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tickets">
+              <PropertyRef Name="Ticket_type_ID" />
+            </Principal>
+            <Dependent Role="BoxOffice_Records">
+              <PropertyRef Name="Ticket_type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Credentials_Employee">
+          <End Role="Credentials" Type="Self.Credential" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Credentials">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shop_Sale_Record_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Shop_Sale_Record" Type="Self.Shop_Sale_Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Shop_Sale_Record">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Department_Zoo">
+          <End Role="Zoo" Type="Self.Zoo" Multiplicity="0..1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zoo">
+              <PropertyRef Name="zoo_name" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="zoo_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Department_ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Purchases_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Food_Purchases" Type="Self.Food_Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Department_ID" />
+            </Principal>
+            <Dependent Role="Food_Purchases">
+              <PropertyRef Name="Department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shops_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Shops" Type="Self.Shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Department_ID" />
+            </Principal>
+            <Dependent Role="Shops">
+              <PropertyRef Name="Department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maintenance_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Maintenance">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_Employee">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exhibit_Zoo">
+          <End Role="Zoo" Type="Self.Zoo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Exhibit" Type="Self.Exhibit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zoo">
+              <PropertyRef Name="zoo_name" />
+            </Principal>
+            <Dependent Role="Exhibit">
+              <PropertyRef Name="zoo_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maintenance_Exhibit">
+          <End Role="Exhibit" Type="Self.Exhibit" Multiplicity="0..1" />
+          <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exhibit">
+              <PropertyRef Name="Exhibit_ID" />
+            </Principal>
+            <Dependent Role="Maintenance">
+              <PropertyRef Name="Exhibit_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Purchases_Food_Supply">
+          <End Role="Food_Supply" Type="Self.Food_Supply" Multiplicity="1" />
+          <End Role="Food_Purchases" Type="Self.Food_Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Supply">
+              <PropertyRef Name="Food_type" />
+            </Principal>
+            <Dependent Role="Food_Purchases">
+              <PropertyRef Name="Food_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shop_Sale_Record_Inventory">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Shop_Sale_Record" Type="Self.Shop_Sale_Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="Item_ID" />
+            </Principal>
+            <Dependent Role="Shop_Sale_Record">
+              <PropertyRef Name="Item_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shop_Sale_Record_Shops">
+          <End Role="Shops" Type="Self.Shop" Multiplicity="1" />
+          <End Role="Shop_Sale_Record" Type="Self.Shop_Sale_Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="Shop_ID" />
+            </Principal>
+            <Dependent Role="Shop_Sale_Record">
+              <PropertyRef Name="Shop_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Employee_Animal_Junction_Table">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+        </Association>
+        <Association Name="Food_Animal_Junction_table">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <End Role="Food_Supply" Type="Self.Food_Supply" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="team4zooEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Animals" EntityType="Self.Animal" />
+          <EntitySet Name="Animal_Feed_Care" EntityType="Self.Animal_Feed_Care" />
+          <EntitySet Name="Animal_Medication_Care" EntityType="Self.Animal_Medication_Care" />
+          <EntitySet Name="Attractions" EntityType="Self.Attraction" />
+          <EntitySet Name="BoxOffice_Records" EntityType="Self.BoxOffice_Records" />
+          <EntitySet Name="Credentials" EntityType="Self.Credential" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Exhibits" EntityType="Self.Exhibit" />
+          <EntitySet Name="Family_Name" EntityType="Self.Family_Name" />
+          <EntitySet Name="Food_Purchases" EntityType="Self.Food_Purchases" />
+          <EntitySet Name="Food_Supply" EntityType="Self.Food_Supply" />
+          <EntitySet Name="Inventories" EntityType="Self.Inventory" />
+          <EntitySet Name="Jobs" EntityType="Self.Job" />
+          <EntitySet Name="Maintenances" EntityType="Self.Maintenance" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Shop_Sale_Record" EntityType="Self.Shop_Sale_Record" />
+          <EntitySet Name="Shops" EntityType="Self.Shop" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+          <EntitySet Name="Zoos" EntityType="Self.Zoo" />
+          <AssociationSet Name="FK_Animal_Care_Animal" Association="Self.FK_Animal_Care_Animal">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="Animal_Feed_Care" EntitySet="Animal_Feed_Care" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Exhibit_ID" Association="Self.FK_Animal_Exhibit_ID">
+            <End Role="Exhibit" EntitySet="Exhibits" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Family_Name" Association="Self.FK_Animal_Family_Name">
+            <End Role="Family_Name" EntitySet="Family_Name" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Medication_Care_Animal" Association="Self.FK_Animal_Medication_Care_Animal">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="Animal_Medication_Care" EntitySet="Animal_Medication_Care" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Medication_Care_Employee" Association="Self.FK_Animal_Medication_Care_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Animal_Medication_Care" EntitySet="Animal_Medication_Care" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attraction_Exhibit" Association="Self.FK_Attraction_Exhibit">
+            <End Role="Exhibit" EntitySet="Exhibits" />
+            <End Role="Attraction" EntitySet="Attractions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoxOffice_Records_Attraction" Association="Self.FK_BoxOffice_Records_Attraction">
+            <End Role="Attraction" EntitySet="Attractions" />
+            <End Role="BoxOffice_Records" EntitySet="BoxOffice_Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Attraction" Association="Self.FK_Employee_Attraction">
+            <End Role="Attraction" EntitySet="Attractions" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoxOffice_Records_Customer" Association="Self.FK_BoxOffice_Records_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="BoxOffice_Records" EntitySet="BoxOffice_Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoxOffice_Records_Department" Association="Self.FK_BoxOffice_Records_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="BoxOffice_Records" EntitySet="BoxOffice_Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoxOffice_Records_Tickets" Association="Self.FK_BoxOffice_Records_Tickets">
+            <End Role="Tickets" EntitySet="Tickets" />
+            <End Role="BoxOffice_Records" EntitySet="BoxOffice_Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Credentials_Employee" Association="Self.FK_Credentials_Employee">
+            <End Role="Credentials" EntitySet="Credentials" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shop_Sale_Record_Customer" Association="Self.FK_Shop_Sale_Record_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Shop_Sale_Record" EntitySet="Shop_Sale_Record" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Department_Zoo" Association="Self.FK_Department_Zoo">
+            <End Role="Zoo" EntitySet="Zoos" />
+            <End Role="Department" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Purchases_Department" Association="Self.FK_Food_Purchases_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Food_Purchases" EntitySet="Food_Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shops_Department" Association="Self.FK_Shops_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Shops" EntitySet="Shops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maintenance_Employee" Association="Self.FK_Maintenance_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Maintenance" EntitySet="Maintenances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_Employee" Association="Self.FK_Role_Employee">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exhibit_Zoo" Association="Self.FK_Exhibit_Zoo">
+            <End Role="Zoo" EntitySet="Zoos" />
+            <End Role="Exhibit" EntitySet="Exhibits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maintenance_Exhibit" Association="Self.FK_Maintenance_Exhibit">
+            <End Role="Exhibit" EntitySet="Exhibits" />
+            <End Role="Maintenance" EntitySet="Maintenances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Purchases_Food_Supply" Association="Self.FK_Food_Purchases_Food_Supply">
+            <End Role="Food_Supply" EntitySet="Food_Supply" />
+            <End Role="Food_Purchases" EntitySet="Food_Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shop_Sale_Record_Inventory" Association="Self.FK_Shop_Sale_Record_Inventory">
+            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="Shop_Sale_Record" EntitySet="Shop_Sale_Record" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shop_Sale_Record_Shops" Association="Self.FK_Shop_Sale_Record_Shops">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Shop_Sale_Record" EntitySet="Shop_Sale_Record" />
+          </AssociationSet>
+          <AssociationSet Name="Employee_Animal_Junction_Table" Association="Self.Employee_Animal_Junction_Table">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="Food_Animal_Junction_table" Association="Self.Food_Animal_Junction_table">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="Food_Supply" EntitySet="Food_Supply" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagram1" EntityType="team4zooModel.sysdiagram1" />
+          <AssociationSet Name="FK_Department_Supervisor_ID" Association="team4zooModel.FK_Department_Supervisor_ID">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Employee1" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Department1" Association="team4zooModel.FK_Employee_Department1">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Employee1" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Employee" Association="team4zooModel.FK_Employee_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Employee1" EntitySet="Employees" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagram1">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Department_Supervisor_ID">
+          <End Type="team4zooModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="team4zooModel.Employee" Role="Employee1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Employee1">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Department1">
+          <End Type="team4zooModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="team4zooModel.Employee" Role="Employee1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Employee1">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Employee">
+          <End Type="team4zooModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="team4zooModel.Employee" Role="Employee1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Employee1">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="team4zooModelStoreContainer" CdmEntityContainer="team4zooEntities">
+          <EntitySetMapping Name="Animals">
+            <EntityTypeMapping TypeName="team4zooModel.Animal">
+              <MappingFragment StoreEntitySet="Animal">
+                <ScalarProperty Name="Assignee3_ID" ColumnName="Assignee3_ID" />
+                <ScalarProperty Name="Assignee2_ID" ColumnName="Assignee2_ID" />
+                <ScalarProperty Name="Assignee1_ID" ColumnName="Assignee1_ID" />
+                <ScalarProperty Name="Animal_ID" ColumnName="Animal_ID" />
+                <ScalarProperty Name="animal_name" ColumnName="animal_name" />
+                <ScalarProperty Name="family" ColumnName="family" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="owner" ColumnName="owner" />
+                <ScalarProperty Name="Exhibit_ID" ColumnName="Exhibit_ID" />
+                <ScalarProperty Name="Attraction_ID" ColumnName="Attraction_ID" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Animal_Feed_Care">
+            <EntityTypeMapping TypeName="team4zooModel.Animal_Feed_Care">
+              <MappingFragment StoreEntitySet="Animal_Feed_Care">
+                <ScalarProperty Name="Animal_ID" ColumnName="Animal_ID" />
+                <ScalarProperty Name="quantity_fed" ColumnName="quantity_fed" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="food_type" ColumnName="food_type" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Animal_Medication_Care">
+            <EntityTypeMapping TypeName="team4zooModel.Animal_Medication_Care">
+              <MappingFragment StoreEntitySet="Animal_Medication_Care">
+                <ScalarProperty Name="Animal_ID" ColumnName="Animal_ID" />
+                <ScalarProperty Name="medication" ColumnName="medication" />
+                <ScalarProperty Name="Vaccine" ColumnName="Vaccine" />
+                <ScalarProperty Name="dose" ColumnName="dose" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="vet" ColumnName="vet" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record_ID" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attractions">
+            <EntityTypeMapping TypeName="team4zooModel.Attraction">
+              <MappingFragment StoreEntitySet="Attraction">
+                <ScalarProperty Name="attraction_name" ColumnName="attraction_name" />
+                <ScalarProperty Name="manager_ID" ColumnName="manager_ID" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Exhibit_ID" ColumnName="Exhibit_ID" />
+                <ScalarProperty Name="Attraction_ID" ColumnName="Attraction_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BoxOffice_Records">
+            <EntityTypeMapping TypeName="team4zooModel.BoxOffice_Records">
+              <MappingFragment StoreEntitySet="BoxOffice_Records">
+                <ScalarProperty Name="membership_discount" ColumnName="membership_discount" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Attraction_ID" ColumnName="Attraction_ID" />
+                <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="tot_amt_paid_after_discounts" ColumnName="tot_amt_paid_after_discounts" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="Sale_ID" ColumnName="Sale_ID" />
+                <ScalarProperty Name="Ticket_type_ID" ColumnName="Ticket_type_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Credentials">
+            <EntityTypeMapping TypeName="team4zooModel.Credential">
+              <MappingFragment StoreEntitySet="Credentials">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="team4zooModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="f_name" ColumnName="f_name" />
+                <ScalarProperty Name="mid_init" ColumnName="mid_init" />
+                <ScalarProperty Name="l_name" ColumnName="l_name" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="membership" ColumnName="membership" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="team4zooModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="zoo_name" ColumnName="zoo_name" />
+                <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+                <ScalarProperty Name="dep_revenue" ColumnName="dep_revenue" />
+                <ScalarProperty Name="Supervisor_ID" ColumnName="Supervisor_ID" />
+                <ScalarProperty Name="dep_expenditure" ColumnName="dep_expenditure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="team4zooModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Supervisor_ID" ColumnName="Supervisor_ID" />
+                <ScalarProperty Name="f_name" ColumnName="f_name" />
+                <ScalarProperty Name="mid_init" ColumnName="mid_init" />
+                <ScalarProperty Name="l_name" ColumnName="l_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="ssn" ColumnName="ssn" />
+                <ScalarProperty Name="hourly_wage" ColumnName="hourly_wage" />
+                <ScalarProperty Name="hire_date" ColumnName="hire_date" />
+                <ScalarProperty Name="sick_days" ColumnName="sick_days" />
+                <ScalarProperty Name="phone_num" ColumnName="phone_num" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="Attraction_ID" ColumnName="Attraction_ID" />
+                <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="display_name" ColumnName="display_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exhibits">
+            <EntityTypeMapping TypeName="team4zooModel.Exhibit">
+              <MappingFragment StoreEntitySet="Exhibit">
+                <ScalarProperty Name="Exhibit_ID" ColumnName="Exhibit_ID" />
+                <ScalarProperty Name="exhibit_loc" ColumnName="exhibit_loc" />
+                <ScalarProperty Name="exhibit_name" ColumnName="exhibit_name" />
+                <ScalarProperty Name="zoo_name" ColumnName="zoo_name" />
+                <ScalarProperty Name="isOpen" ColumnName="isOpen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Family_Name">
+            <EntityTypeMapping TypeName="team4zooModel.Family_Name">
+              <MappingFragment StoreEntitySet="Family_Name">
+                <ScalarProperty Name="family_title" ColumnName="family_title" />
+                <ScalarProperty Name="Family_ID" ColumnName="Family_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Food_Purchases">
+            <EntityTypeMapping TypeName="team4zooModel.Food_Purchases">
+              <MappingFragment StoreEntitySet="Food_Purchases">
+                <ScalarProperty Name="order_ID" ColumnName="order_ID" />
+                <ScalarProperty Name="Food_type" ColumnName="Food_type" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="amount_purchased" ColumnName="amount_purchased" />
+                <ScalarProperty Name="tot_cost" ColumnName="tot_cost" />
+                <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Food_Supply">
+            <EntityTypeMapping TypeName="team4zooModel.Food_Supply">
+              <MappingFragment StoreEntitySet="Food_Supply">
+                <ScalarProperty Name="Food_type" ColumnName="Food_type" />
+                <ScalarProperty Name="last_ordered" ColumnName="last_ordered" />
+                <ScalarProperty Name="resupply_date" ColumnName="resupply_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventories">
+            <EntityTypeMapping TypeName="team4zooModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="wholesaleprice" ColumnName="wholesaleprice" />
+                <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="last_ordered" ColumnName="last_ordered" />
+                <ScalarProperty Name="resupply_date" ColumnName="resupply_date" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="ordered_quantity" ColumnName="ordered_quantity" />
+                <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="team4zooModel.Job">
+              <MappingFragment StoreEntitySet="Jobs">
+                <ScalarProperty Name="job_title" ColumnName="job_title" />
+                <ScalarProperty Name="Job_ID" ColumnName="Job_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maintenances">
+            <EntityTypeMapping TypeName="team4zooModel.Maintenance">
+              <MappingFragment StoreEntitySet="Maintenance">
+                <ScalarProperty Name="Ticket_ID" ColumnName="Ticket_ID" />
+                <ScalarProperty Name="job_type" ColumnName="job_type" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="due_date" ColumnName="due_date" />
+                <ScalarProperty Name="Exhibit_ID" ColumnName="Exhibit_ID" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="team4zooModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="Job_Title" ColumnName="Job_Title" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shop_Sale_Record">
+            <EntityTypeMapping TypeName="team4zooModel.Shop_Sale_Record">
+              <MappingFragment StoreEntitySet="Shop_Sale_Record">
+                <ScalarProperty Name="Sale_ID" ColumnName="Sale_ID" />
+                <ScalarProperty Name="Shop_ID" ColumnName="Shop_ID" />
+                <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="refund_flag" ColumnName="refund_flag" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shops">
+            <EntityTypeMapping TypeName="team4zooModel.Shop">
+              <MappingFragment StoreEntitySet="Shops">
+                <ScalarProperty Name="Shop_ID" ColumnName="Shop_ID" />
+                <ScalarProperty Name="shop_loc" ColumnName="shop_loc" />
+                <ScalarProperty Name="shop_name" ColumnName="shop_name" />
+                <ScalarProperty Name="Manager_Employee_ID" ColumnName="Manager_Employee_ID" />
+                <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="team4zooModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams1">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="team4zooModel.Ticket">
+              <MappingFragment StoreEntitySet="Tickets">
+                <ScalarProperty Name="Ticket_type_ID" ColumnName="Ticket_type_ID" />
+                <ScalarProperty Name="Ticket_type" ColumnName="Ticket_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zoos">
+            <EntityTypeMapping TypeName="team4zooModel.Zoo">
+              <MappingFragment StoreEntitySet="Zoo">
+                <ScalarProperty Name="zoo_name" ColumnName="zoo_name" />
+                <ScalarProperty Name="zoo_acres" ColumnName="zoo_acres" />
+                <ScalarProperty Name="zoo_est_date" ColumnName="zoo_est_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Employee_Animal_Junction_Table" TypeName="team4zooModel.Employee_Animal_Junction_Table" StoreEntitySet="Employee_Animal_Junction_Table">
+            <EndProperty Name="Animal">
+              <ScalarProperty Name="Animal_ID" ColumnName="Animal_ID" />
+            </EndProperty>
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Food_Animal_Junction_table" TypeName="team4zooModel.Food_Animal_Junction_table" StoreEntitySet="Food_Animal_Junction_table">
+            <EndProperty Name="Animal">
+              <ScalarProperty Name="Animal_ID" ColumnName="Animal_ID" />
+            </EndProperty>
+            <EndProperty Name="Food_Supply">
+              <ScalarProperty Name="Food_type" ColumnName="Food_type" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="sysdiagram1">
+            <EntityTypeMapping TypeName="team4zooModel.sysdiagram1">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

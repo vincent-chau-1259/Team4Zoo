@@ -1,0 +1,180 @@
+﻿@using zoo.Models
+@model AddAnimal
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .myButton {
+            background-color: #44c767;
+            -moz-border-radius: 41px;
+            -webkit-border-radius: 41px;
+            border-radius: 41px;
+            border: 1px solid #18ab29;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 17px;
+            padding: 8px 76px;
+            text-decoration: none;
+            text-shadow: 0px 0px 0px #2f6627;
+        }
+
+            .myButton:hover {
+                background-color: #5cbf2a;
+            }
+
+            .myButton:active {
+                position: relative;
+                top: 1px;
+            }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("AddAnimal", "AddAnimal", FormMethod.Post))
+    {
+        <div>
+            <table>
+
+                <tr><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td></tr>
+                <tr><td><h3>Add Animal Form</h3></td><td></td><td></td><td></tr>
+                <tr>
+                    <th>Animal Name</th>
+                    <th>Family Name</th>
+                    <th>Date of Birth</th>
+                    <th>Sex</th>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.EditorFor(model => model.name)
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.familyN,
+                          new SelectList(Model.familyNames),
+                          "Select Value")
+                    </td>
+
+                    <td>
+                        <input type="date" name="dob" id="dob">
+                    </td>
+
+                    <td>
+                        @Html.DropDownListFor(model => model.sex,
+                         new SelectList(Model.sexs),
+                         "Select Value")
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Weight</th>
+                    <th>Owner</th>
+                    <th>Exhibit Name</th>
+                    <th>Attraction Name</th>
+                    
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.EditorFor(model => model.weight)
+                    </td>
+
+                    <td>
+                        @Html.EditorFor(model => model.owner)
+                    </td>
+
+                    <td>
+                        @Html.DropDownListFor(model => model.ExhibitN,
+                          new SelectList(Model.exhibitNames),
+                          "Select Value")
+                    </td>
+
+                    <td>
+                        @Html.DropDownListFor(model => model.AttrN,
+                          new SelectList(Model.attrNames),
+                          "Select Value")
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Assignee1</th>
+                    <th>Assignee2</th>
+                    <th>Assignee3</th>
+                    <th> </th>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DropDownListFor(model => model.Assignee1,
+                          new SelectList(Model.emplyeeUserNames),
+                          "Select Value")
+                    </td>
+
+                    <td>
+                        @Html.DropDownListFor(model => model.Assignee2,
+                          new SelectList(Model.emplyeeUserNames),
+                          "Select Value")
+                    </td>
+
+                    <td>
+                        @Html.DropDownListFor(model => model.Assginee3,
+                          new SelectList(Model.emplyeeUserNames),
+                          "Select Value")
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <div>
+            <p>    </p>
+            <p>    </p>
+            <label class="field-validation-error">@Html.DisplayFor(model => model.ErrorMessage1)</label>
+            <label class="field-validation-error">@Html.DisplayFor(model => model.ErrorMessage2)</label>
+            <p>    </p>
+            <p>    </p>
+        </div>
+        <div style="width:300px; margin-top: 100px; margin:0 auto;">
+
+            <input type="Submit" class="myButton" value="Save Changes" />
+
+        </div>
+    }
+</body>
+</html>
+
+

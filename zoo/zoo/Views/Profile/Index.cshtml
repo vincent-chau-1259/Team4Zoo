@@ -1,0 +1,156 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["Employee_ID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+@using zoo.Models
+@model UserProfile
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <style>
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <table class="table">
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td><h3>Current User</h3></td><td><h3>Role</h3></td><td></td><td></td></tr>
+            <tr><td>@Session["FName"].ToString().ToUpper() @Session["LName"].ToString().ToUpper()</td><td>@Session["RoleName"].ToString().ToUpper()</td><td></td></tr>
+        </table>
+        <table class="table">
+             <tr><td><h3>User Name:</h3></td><td></td><td></td><td></td></tr>
+            <tr><td><h5>@Session["username"].ToString()</h5><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#editUN">Edit</button></td></tr>
+            <tr>
+                <td>
+                    <label class="field-validation-error">@Html.DisplayFor(model => model.UserNameErrorMessage)</label>
+                </td>
+            </tr>
+        </table>
+
+        <div id="editUN" class="collapse">
+            <table class="table">
+                @using (Html.BeginForm("EditUsername", "Profile", FormMethod.Post))
+                {
+                    <tr>
+                        <th>Type New Username</th>
+                        <th>Confirm Password </th>
+                        <th>(You will be logged out)</th>
+                    </tr>
+                    <tr>
+
+                        <td>@Html.EditorFor(model => model.newUsername)</td>
+                        <td>@Html.EditorFor(model => model.oldPassword)</td>
+                        <td>
+                            <input type="Submit" value="Submit" />
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <table class="table">
+            <tr><td><h3>Password:</h3></td><td></td><td></td><td></td></tr>
+            <tr><td><h5>*********</h5><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#editPass">Edit</button></td></tr>
+            <tr>
+                <td>
+                    <label class="field-validation-error">@Html.DisplayFor(model => model.PwdErrorMessage)</label>
+                </td>
+            </tr>
+        </table>
+
+        <div id="editPass" class="collapse">
+            <table class="table">
+                @using (Html.BeginForm("EditPassword", "Profile", FormMethod.Post))
+                {
+                    <tr>
+                        <th>Type Current Password</th>
+                        <th>Type New Password </th>
+                        <th>(You will be logged out)</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.EditorFor(model => model.oldPassword)</td>
+                        <td>@Html.EditorFor(model => model.newPassword)</td>
+                        <td>
+                            <input type="Submit" value="Submit" />
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <table class="table">
+            <tr><td><h3>Email Address:</h3></td><td></td><td></td><td></td></tr>
+            <tr><td><h5>@Session["Email"]</h5><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#editEmail">Edit</button></td></tr>
+            <tr>
+                <td>
+                    <label class="field-validation-error">@Html.DisplayFor(model => model.EmailErrorMessage)</label>
+                </td>
+            </tr>
+        </table>
+        <div id="editEmail" class="collapse">
+            <table class="table">
+                @using (Html.BeginForm("EditEmail", "Profile", FormMethod.Post))
+                {
+                    <tr>
+                        <th>Type New Email Address</th>
+                        <th>(You will be logged out)</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.EditorFor(model => model.newEmail)</td>
+                        <td>
+                            <input type="Submit" value="Submit" />
+                        </td>
+                    </tr>
+                   
+                }
+            </table>
+        </div>
+        <table class="table">
+            <tr><td><h3>Phone Number:</h3></td><td></td><td></td><td></td></tr>
+            <tr><td><h5>@Session["Phone"]</h5><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#editPhone">Edit</button></td></tr>
+        <tr>
+            <td>
+                <label class="field-validation-error">@Html.DisplayFor(model => model.PhoneErrorMessage)</label>
+            </td>
+        </tr>
+        </table>
+        <div id="editPhone" class="collapse">
+            <table class="table">
+                @using (Html.BeginForm("EditPhone", "Profile", FormMethod.Post))
+                {
+                    <tr>
+                        <th>Type New Phone Number</th>
+                        <th>(You will be logged out)</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.EditorFor(model => model.newPhone)</td>
+                        <td>
+                            <input type="Submit" value="Submit" />
+                        </td>
+                    </tr>
+                   
+                }
+            </table>
+        </div>
+    </div>
+
+
+</body>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+</html>

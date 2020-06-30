@@ -1,0 +1,144 @@
+﻿@using zoo.Models
+@model Tuple<IEnumerable<Animal>,IEnumerable<Food_Supply>, IEnumerable<string>>
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .field-validation-error {
+            color: red;
+        }
+
+        p.pad {
+            border: 1px solid red;
+            padding-top: 45px;
+        }
+    </style>
+</head>
+
+    <body>
+        <div>
+            <table class="table">
+                @using (Html.BeginForm("FoodEntery", "FeedCare", FormMethod.Post))
+                {
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td><h3>Food Entry</h3></td><td></td><td></td><td></tr>
+                    <tr>
+                        <th>Animal Name</th>
+                        <th>Food Type</th>
+                        <th>Quantity in Pounds</th>
+                        <th> </th>
+                        <th> </th>
+                        <th></th>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            @Html.DropDownListFor(model => model.Item1.ElementAt(0).animal_name,
+                         new SelectList(Model.Item1),
+                         "Select Value")
+                        </td>
+
+                        <td>
+                            @Html.DropDownListFor(model => model.Item2.ElementAt(0).Food_type,
+                         new SelectList(Model.Item2),
+                         "Select Value")
+                        </td>
+
+                        <td>
+                            @Html.EditorFor(model => model.Item2.ElementAt(0).quantity_fed)
+                        </td>
+
+                        <td>
+                           
+                        </td>
+
+                        <td>
+                           
+                        </td>
+
+                        <td>
+                            <input type="Submit" value="Save Changes" />
+                        </td>
+
+                    </tr>
+
+                }
+                @using (Html.BeginForm("MedicationEntery", "FeedCare", FormMethod.Post))
+                {
+                    
+                    <tr><td><h3>Medication Entry</h3></td><td></td><td></td><td></tr>
+                    <tr>
+                        <th>Animal Name</th>
+                        <th>Medication</th>
+                        <th>dose</th>
+                        <th>Vet</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            @Html.DropDownListFor(model => model.Item1.ElementAt(0).animal_name,
+                        new SelectList(Model.Item1),
+                        "Select Value")
+                        </td>
+
+                        <td>
+                            @Html.EditorFor(model => model.Item1.ElementAt(0).medication)
+                        </td>
+
+                        <td>
+                            @Html.EditorFor(model => model.Item1.ElementAt(0).dose)
+                        </td>
+
+                        <td>
+                            @Html.EditorFor(model => model.Item1.ElementAt(0).vet)
+                        </td>
+
+                        <td>
+                            @Html.EditorFor(model => model.Item1.ElementAt(0).description)
+                        </td>
+
+                        <td>
+                            <input type="Submit" value="Save Changes" />
+                        </td>
+
+                    </tr>
+                }
+            </table>
+            <div>
+                <label class="field-validation-error">@Html.DisplayFor(model => model.Item3)</label>
+            </div>
+        </div>
+    </body>
+</html>

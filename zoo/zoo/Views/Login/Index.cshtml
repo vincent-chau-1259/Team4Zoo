@@ -1,0 +1,83 @@
+﻿@using zoo.Models
+@model Credential
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+    <style>
+        #login-div {
+            position: absolute;
+            left: 37%;
+            top: 40%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+            background-color: white;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+</head>
+<body background = http://images2.fanpop.com/images/photos/4400000/Cartoon-animals-animals-4410325-380-380.jpg>
+    <header style="font-size:3vw;">
+        <text style="align-content:center"> Welcome to Team4Zoo Portal</text>
+    </header>
+    <div id="login-div">
+        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-align:center">Sign In</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.username)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.username)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.username)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.password)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.password)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.password)</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="Submit" name="name" value="Submit" />
+                        <input type="reset" name="name" value="Clear" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+
+</body>
+</html>
+
+

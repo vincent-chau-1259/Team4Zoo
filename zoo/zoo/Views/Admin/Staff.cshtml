@@ -1,0 +1,102 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using zoo.Models
+@model Department
+
+<html lang="en">
+<head>
+    <title>Staff Management</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <style>
+        .collapsible {
+            background-color: #4E4D4D;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+
+            .active, .collapsible:hover {
+                background-color: #555;
+            }
+
+        .content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f1f1f1;
+        }
+
+        .collapsible:after {
+            content: '\02795'; /* Unicode character for "plus" sign (+) */
+            font-size: 13px;
+            color: white;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2796"; /* Unicode character for "minus" sign (-) */
+        }
+
+        p.pad {
+            border: 1px solid red;
+            padding-top: 45px;
+        }
+    </style>
+</head>
+<body>
+    <p class="pad"></p>
+
+    <div class="btn-group-vertical">
+        <button type="button" class="btn btn-primary" onclick="Redirect_addEmp()">Add New Employee</button>
+        <button type="button" class="btn btn-primary" onclick="Redirect_searchEmp()">Employee Lookup</button>
+        <button type="button" class="btn btn-primary">Edit Employee</button>
+        <button type="button" class="btn btn-primary">Delete Employee</button>
+    </div>
+
+
+
+
+
+
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+
+
+        function Redirect_addEmp() {
+            location.href = "addEmp";
+        }
+        function Redirect_searchEmp() {
+            location.href = "searchEmp";
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "MedicationReport";
+}
+
+@using zoo.Models
+@model Tuple<IEnumerable<Animal_Medication_Care>>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>>
+</head>
+<body>
+    <div>
+        <table>
+            
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td><h3>Medication Reports</h3></td><td></td><td></td><td></tr>
+
+            <tr>
+                <th>Medication</th>
+                <th>dose</th>
+                <th>Vet</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+            @foreach (var item in Model.Item1)
+            {
+            <tr>
+                <td>@item.medication</td>
+                <td>@item.dose</td>
+                <td>@item.vet</td>
+                <td>@item.description</td>
+                <td>@item.date</td>
+                <td>@item.time</td>
+            </tr>
+            }
+
+
+        </table>
+
+    </div>
+</body>
+</html>
+
+

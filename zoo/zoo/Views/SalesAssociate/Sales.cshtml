@@ -1,0 +1,90 @@
+@using zoo.Models
+@model Shop_Sale_Record
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+    <style>
+        #login-div {
+            position: absolute;
+            left: 37%;
+            top: 40%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+            background-color: white;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+</head>
+<body style="background-color:cornflowerblue">
+    <header style="font-size:3vw; margin-top:50px">
+        <text style="align-content:center"> Sales Entry</text>
+    </header>
+    <div id="login-div">
+        @using (Html.BeginForm("Sales", "SalesAssociate", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-align:center">Sales Entry</td>
+                </tr>
+                <tr>
+                    <td> @Html.LabelFor(model => model.refund_flag)</td>
+                    <td> @Html.CheckBoxFor(model => model.refund_flag)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Shop ID</b>
+                    </td>
+                    <td>
+                        <input type="text" id="ShopID" , name="ShopID" value="a42f83a2-e401-4ccc-8f32-6969c00ae012" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Item Name</b>
+                    </td>
+                    <td>
+                        <input type="text" id="itemName" , name="itemName" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Item_ID)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.quantity)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.quantity)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="Submit" name="name" value="Submit" />
+                        <input type="reset" name="name" value="Clear" />
+                    </td>
+                </tr>
+            </table>
+        }
+        @if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+
+            </script>
+        }
+    </div>
+</body>
+</html>

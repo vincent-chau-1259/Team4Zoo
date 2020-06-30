@@ -1,0 +1,114 @@
+﻿@using zoo.Models
+@model Attraction
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+    <style>
+        #login-div {
+            position: absolute;
+            left: 37%;
+            top: 40%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+            background-color: white;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+</head>
+<body style="background-color:khaki">
+    <header style="font-size:3vw; margin-top:50px">
+        <text style="align-content:center"> Add Attraction</text>
+    </header>
+    <div id="login-div">
+        @using (Html.BeginForm("AddAttraction", "CaregiverSuperAttraction", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-align:center">Create Attraction</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.attraction_name)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.attraction_name)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Start Date</b>
+                    </td>
+                    <td>
+                        <input type="date" name="from" id="from">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>End Date</b>
+                    </td>
+                    <td>
+                        <input type="date" name="to" id="to">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Start Time</b>
+                    </td>
+                    <td>
+                        <input type="time" name="Tfrom" id="Tfrom">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>End Time</b>
+                    </td>
+                    <td>
+                        <input type="time" name="Tto" id="Tto">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Ticket Price</b>
+                    </td>
+                    <td>
+                        <input type="text" name="cost" id="cost">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Tickets to Order</b>
+                    </td>
+                    <td>
+                        <input type="text" name="amount" id="amount">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="Submit" name="name" value="Submit" />
+                        <input type="reset" name="name" value="Clear" />
+                    </td>
+                </tr>
+            </table>
+        }
+        @if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+
+            </script>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@using zoo.Models
+@model Attraction
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+    <style>
+        #login-div {
+            position: absolute;
+            left: 37%;
+            top: 40%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+            background-color: white;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+</head>
+<body style="background-color:cornflowerblue">
+    <header style="font-size:3vw;">
+        <text style="align-content:center"> Check Inventory</text>
+    </header>
+    <div id="login-div">
+        @using (Html.BeginForm("MyAnimals", "CaregiverSuper", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-align:center">Check For</td>
+                </tr>
+
+            </table>
+        }
+    </div>
+</body>
+</html>

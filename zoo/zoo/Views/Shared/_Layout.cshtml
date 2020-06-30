@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Team4Zoo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    @if (Session["Employee_ID"] != null)
+                    {
+                        if (Session["RoleName"].ToString().Equals("Caregiver"))
+                        {
+                            <li>@Html.ActionLink("Home", "Index", "CareGiverHome")</li>
+                            <li>@Html.ActionLink("Food and Medication", "Index", "FeedCare")</li>
+                            <li>@Html.ActionLink("Exhibits and Attractions", "Index", "CareGiverBaseAttraction")</li>
+                            <li>@Html.ActionLink("Reports", "Index", "CareGiverReport")</li>
+
+                        }
+                        if (Session["RoleName"].ToString().Equals("SalesAssociate"))
+                        {
+                            <li>@Html.ActionLink("Ticket Sales", "TicketSales", "SalesAssociate")</li>
+                            <li>@Html.ActionLink("Shop Sales", "Sales", "SalesAssociate")</li>
+                            <li>@Html.ActionLink("Add Member", "AddMember", "SalesAssociate")</li>
+                            <li>@Html.ActionLink("Inventory", "Inventory", "SalesAssociate")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "SalesAssociate")</li>
+                        }
+                        if (Session["RoleName"].ToString().Equals("SalesManager"))
+                        {
+                            <li>@Html.ActionLink("Lookup Item", "Inventory", "SalesManager")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "SalesManager")</li>
+                            <li>@Html.ActionLink("Shops", "Shop", "SalesManager")</li>
+                            <li>@Html.ActionLink("Add Item", "AddItem", "Inventory")</li>
+                            <li>@Html.ActionLink("View Inventory", "ViewInventory", "SalesManager")</li>
+                            <li>@Html.ActionLink("My Employees", "Index", "SalesManager")</li>
+                        }
+                        if (Session["RoleName"].ToString().Equals("Admin"))
+                        {
+                            <li>@Html.ActionLink("Departments", "Dept", "Admin")</li>
+                            <li>@Html.ActionLink("Staff Management", "Staff", "Admin")</li>
+                            <li>@Html.ActionLink("Reports", "Report", "Admin")</li>
+                        }
+                        if (Session["RoleName"].ToString().Equals("CaregiverSuper"))
+                        {
+                            <li>@Html.ActionLink("My Animals", "MyAnimals", "CaregiverSuper")</li>
+                            <li>@Html.ActionLink("Add Animals", "Index", "AddAnimal")</li>
+                            <li>@Html.ActionLink("My Employees", "Index", "CaregiverSuper")</li>
+                            <li>@Html.ActionLink("My Attractions", "ViewAttractions", "CaregiverSuperAttraction")</li>
+                            <li>@Html.ActionLink("Add Attractions", "AddAttraction", "CaregiverSuperAttraction")</li>
+                        }
+
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["Employee_ID"] == null)
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Home")</li>
+
+                    }
+                    @if (Session["Employee_ID"] != null)
+                    {
+                        <li>@Html.ActionLink("Hi " + Session["Name"].ToString().ToUpper() + "!", "Index", "Profile")</li>
+                        <li><a href="@Url.Action("LogOut","Login")">Log Out</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
